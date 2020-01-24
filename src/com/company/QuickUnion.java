@@ -6,12 +6,13 @@ public class QuickUnion{
     private int[] id;
     private int [] size;
     private int c;
+    private boolean weight;
 
-    public QuickUnion(int n)
+    public QuickUnion(int n, boolean w)
     {
         id = new int[n];
         size = new int[n];
-        int c;
+        weight = w;
 
         for(int i = 0; i < n; i++)
         {
@@ -24,47 +25,68 @@ public class QuickUnion{
         return c;
     }
 
+    public int getSize(int j){
+        return size[j];
+    }
+
     public boolean connected(int x, int y)
     {
         return find(x) == find(y);
     }
 
     public int find(int n){
-        n = id[n];
+        while (n != id[n]) {
+            n= id[n];
+        }
+
         return n;
     }
 
     public void union(int x, int y)
     {
-        int id_1 = x;
-        int id_2 = y;
+        int id_1 = find(x);
+        int id_2 = find(y);
 
-        if(id_1 != id_2)
+        if(weight)
         {
-            if(size[id_1] < size[id_2]){
-                id[id_1] = id_2;
-                size[id_2] += size[id_1];
+            if(id_1 != id_2)
+            {
+                if(size[id_1] < size[id_2]){
+                    id[id_1] = id_2;
+                    size[id_2] += size[id_1];
+                }
+                else{
+                    id[id_2] = id_1;
+                    size[id_1] += size[id_2];
+                }
+                c--;
             }
-            else{
-                id[id_2] = id_1;
-                size[id_1] += size[id_2];
+        }
+        else
+        {
+            if(id_1 != id_2) {
+                for (int i = 0; i < id.length; i++) {
+                    if (id[i] == id_1) {
+                        id[i] = id_2;
+                        size[i] += size[id_2];
+                    }
+                }
             }
-            c--;
         }
 
-//        for(int i = 0; i < id.length; i++)
-//        {
-//            if(id[i] == id_1)
-//                id[i] = id_2;
-//        }
+
+
     }
 
     @Override
     public String toString() {
-        return "QuickUnion{" +
-                "id=" + Arrays.toString(id) +
-                '}' +
-                "/n" + "size=" + Arrays.toString(size);
+        int index[] = new int[id.length];
+        for(int i = 0; i < id.length; i++)
+            index[i] = i;
+        return "Node#="  +
+                Arrays.toString(index) + "\n" +
+                "Value=" + Arrays.toString(id) + "\n" +
+                "Size =" + Arrays.toString(size) + "\n";
 
     }
 }
