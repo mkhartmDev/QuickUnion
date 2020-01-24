@@ -42,6 +42,12 @@ public class QuickUnion{
         return n;
     }
 
+    public int depth(int n){
+
+        return 1;
+    }
+
+
     public void union(int x, int y)
     {
         int id_1 = find(x);
@@ -62,18 +68,19 @@ public class QuickUnion{
                 c--;
             }
         }
-        else
-        {
-            if(id_1 != id_2) {
-                for (int i = 0; i < id.length; i++) {
-                    if (id[i] == id_1) {
-                        id[i] = id_2;
-                        size[i] += size[id_2];
-                    }
-                }
+        else {
+            if (id_1 != id_2) {
+                id[id_1] = id_2;
+                size[id_2] += size[id_1];
             }
-        }
 
+//            for (int i = 0; i < id.length; i++) {
+//                if (id[i] == id_1) {
+//                    size[i] = size[id_1];
+//                }
+//            }
+
+        }
 
 
     }
