@@ -23,13 +23,9 @@ public class Main {
         System.out.println("Enable weighting? (Y or N)");
         char ans = scn.next().toUpperCase().charAt(0);
         if(ans == 'Y')
-        {
             q = new QuickUnion(size, true);
-        }
         else
-        {
             q = new QuickUnion(size, false);
-        }
 
     }
 
@@ -45,7 +41,7 @@ public class Main {
                 break;
                 case 2: checkCon();
                 break;
-                case 3: getSize();
+                case 3: getDep();
                 break;
                 case 4: System.out.println(q.toString());
                 break;
@@ -56,11 +52,11 @@ public class Main {
         System.out.println("Peace Out");
     }
 
-    public static void getSize(){
+    public static void getDep(){
         Scanner scn = new Scanner(System.in);
-        System.out.println("Enter the node to find the depth of the node on the tree");
+        System.out.println("Enter the node to find depth");
         int x = scn.nextInt();
-        int depth = q.getSize(x);
+        int depth = q.depth(x);
         System.out.println("The depth of node " + x + " is " + depth + "\n");
     }
 

@@ -7,12 +7,14 @@ public class QuickUnion{
     private int [] size;
     private int c;
     private boolean weight;
+    private int depth;
 
     public QuickUnion(int n, boolean w)
     {
         id = new int[n];
         size = new int[n];
         weight = w;
+        depth = 1;
 
         for(int i = 0; i < n; i++)
         {
@@ -38,14 +40,21 @@ public class QuickUnion{
         while (n != id[n]) {
             n= id[n];
         }
-
         return n;
     }
 
     public int depth(int n){
+        int current = n;
+        int next = id[n];
 
-        return 1;
+        if(current == next) {
+            return 0;
+        }
+
+        return depth(next) + 1;
+
     }
+
 
 
     public void union(int x, int y)
