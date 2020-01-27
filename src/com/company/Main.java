@@ -34,7 +34,7 @@ public class Main {
         printMenu();
         int selection = scn.nextInt();
 
-        while(selection != 5)
+        while(selection != 6)
         {
             switch (selection){
                 case 1: connect();
@@ -43,7 +43,9 @@ public class Main {
                 break;
                 case 3: getDep();
                 break;
-                case 4: System.out.println(q.toString());
+                case 4: getSize();
+                break;
+                case 5: System.out.println(q.toString());
                 break;
             }
             printMenu();
@@ -58,6 +60,14 @@ public class Main {
         int x = scn.nextInt();
         int depth = q.depth(x);
         System.out.println("The depth of node " + x + " is " + depth + "\n");
+    }
+
+    public static void getSize(){
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Enter the node to find tree size");
+        int x = scn.nextInt();
+        int depth = q.getSize(x);
+        System.out.println("The size of the tree beneath and including node " + x + " is " + depth + "\n");
     }
 
     public static void connect(){
@@ -90,8 +100,9 @@ public class Main {
         System.out.println("1: Connect Nodes");
         System.out.println("2: Check Connectivity");
         System.out.println("3: Get Node Depth");
-        System.out.println("4: Print Structure as String");
-        System.out.println("5: Exit" + "\n");
+        System.out.println("4: Get Tree Size");
+        System.out.println("5: Print Structure as String");
+        System.out.println("6: Exit" + "\n");
    }
 
 

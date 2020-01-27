@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class QuickUnion{
     private int[] id;
     private int [] size;
-    private int c;
     private boolean weight;
     private int depth;
 
@@ -21,10 +20,6 @@ public class QuickUnion{
             id[i] = i;
             size[i] = 1;
         }
-    }
-
-    public int getCount(){
-        return c;
     }
 
     public int getSize(int j){
@@ -50,9 +45,7 @@ public class QuickUnion{
         if(current == next) {
             return 0;
         }
-
         return depth(next) + 1;
-
     }
 
 
@@ -74,7 +67,6 @@ public class QuickUnion{
                     id[id_2] = id_1;
                     size[id_1] += size[id_2];
                 }
-                c--;
             }
         }
         else {
@@ -82,16 +74,7 @@ public class QuickUnion{
                 id[id_1] = id_2;
                 size[id_2] += size[id_1];
             }
-
-//            for (int i = 0; i < id.length; i++) {
-//                if (id[i] == id_1) {
-//                    size[i] = size[id_1];
-//                }
-//            }
-
         }
-
-
     }
 
     @Override
@@ -103,6 +86,5 @@ public class QuickUnion{
                 Arrays.toString(index) + "\n" +
                 "Value=" + Arrays.toString(id) + "\n" +
                 "Size =" + Arrays.toString(size) + "\n";
-
     }
 }
